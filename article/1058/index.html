@@ -15,9 +15,7 @@
     background: #ff4081; color: #fff; border: none; padding: 0.6rem 1.2rem;
     border-radius: 6px; cursor: pointer; font-size: 1rem;
   }
-  .btn-copy:hover {
-    background: #e03673;
-  }
+  .btn-copy:hover { background: #e03673; }
   .tags {
     margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;
   }
@@ -33,11 +31,14 @@
     margin-top: 2rem; font-size: 0.85rem; color: #999; border-top: 1px solid #eee; padding-top: 1rem;
   }
   .link-area {
-    margin: 1rem 0 1rem 0;
+    margin: 1rem 0;
   }
   .copy-msg {
     color: green; font-weight: bold; margin-top: 0.5rem; display: none;
   }
+  .back-home { margin-top: 2rem; }
+  .back-home a { color: #ff4081; text-decoration: none; }
+  .recommend ul { padding-left: 1rem; }
 </style>
 </head>
 <body>
@@ -61,8 +62,22 @@
   <p>🟠资源随时失效，请尽快转存。<br />🟡提示试看保持到网盘即可。</p>
 </div>
 
-<div class="tags">
-  <span class="tag">赌命大翻身</span> <span class="tag">8集</span> <span class="tag">已完结</span> <span class="tag">2025</span> <span class="tag">剧情</span> <span class="tag">喜剧</span> <span class="tag">犯罪</span> <span class="tag">奇幻</span> <span class="tag">1080P</span> <span class="tag">8GB</span> <span class="tag">夸克网盘</span> <span class="tag">电影</span> <span class="tag">百度网盘</span> <span class="tag">高清资源</span> <span class="tag">推荐</span> <span class="tag">资源</span> <span class="tag">下载</span> <span class="tag">全集</span> <span class="tag">网络资源</span> <span class="tag">分享</span> <span class="tag">影视</span> <span class="tag">网盘</span> <span class="tag">免费</span> <span class="tag">热门</span> <span class="tag">最新</span> 
+<div class="tags"><span class="tag">赌命大翻身</span> <span class="tag">8集</span> <span class="tag">已完结</span> <span class="tag">2025</span> <span class="tag">剧情</span> <span class="tag">喜剧</span> <span class="tag">犯罪</span> <span class="tag">奇幻</span> <span class="tag">1080P</span> <span class="tag">8GB</span> <span class="tag">夸克网盘</span> <span class="tag">电影</span> <span class="tag">百度网盘</span> <span class="tag">高清资源</span> <span class="tag">推荐</span> <span class="tag">资源</span> <span class="tag">下载</span> <span class="tag">全集</span> <span class="tag">网络资源</span> <span class="tag">分享</span> <span class="tag">影视</span> <span class="tag">网盘</span> <span class="tag">免费</span> <span class="tag">热门</span> <span class="tag">最新</span> </div>
+
+<div class="back-home">
+  ← <a href="/movie_resources/">返回首页</a>
+</div>
+
+<div class="recommend">
+  🔀 <strong>你可能感兴趣的资源：</strong>
+  <ul>
+  <li><a href="/movie_resources/article/976/">推荐文章 ID 976</a></li>
+<li><a href="/movie_resources/article/949/">推荐文章 ID 949</a></li>
+<li><a href="/movie_resources/article/1021/">推荐文章 ID 1021</a></li>
+<li><a href="/movie_resources/article/1019/">推荐文章 ID 1019</a></li>
+<li><a href="/movie_resources/article/962/">推荐文章 ID 962</a></li>
+
+  </ul>
 </div>
 
 <div class="footer">
@@ -79,48 +94,23 @@ function copyLink(text) {
     fallbackCopy(text);
   }
 }
-
 function fallbackCopy(text) {
   let textArea = document.createElement("textarea");
   textArea.value = text;
   textArea.style.position = "fixed";
   textArea.style.left = "-999999px";
   document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-  try {
-    document.execCommand('copy');
-    showCopyMsg();
-  } catch {
-    alert("复制失败，请手动复制链接");
-  }
+  textArea.focus(); textArea.select();
+  try { document.execCommand('copy'); showCopyMsg(); } 
+  catch { alert("复制失败，请手动复制链接"); }
   document.body.removeChild(textArea);
 }
-
 function showCopyMsg() {
   const msg = document.getElementById('copy-msg');
   msg.style.display = 'block';
-  setTimeout(() => {
-    msg.style.display = 'none';
-  }, 2000);
+  setTimeout(() => { msg.style.display = 'none'; }, 2000);
 }
 </script>
-
-<div class="footer-nav" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;">
-  <p><a href="/movie_resources/">← 返回首页</a></p>
-  <h3>🔀 你可能感兴趣的资源：</h3>
-  <ul>
-    <?php
-       = range(1, 1058);  // 或读取已有文章目录
-      shuffle();
-       = array_slice(, 0, 5);
-      foreach ( as ) {
-          echo "<li><a href=\"/movie_resources/article//\">文章 ID </a></li>";
-      }
-    ?>
-  </ul>
-</div>
-
 
 </body>
 </html>
